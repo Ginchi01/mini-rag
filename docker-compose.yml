@@ -1,0 +1,12 @@
+services:
+  rag:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_HOST_URL: http://host.docker.internal:11434
+      RAG_LLM: qwen2.5:7b
+      RAG_EMB: bge-m3
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
